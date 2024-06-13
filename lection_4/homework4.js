@@ -239,7 +239,20 @@ function syncOutput() {
     .then((result) => console.log(result))
 }
 
-syncOutput()
+syncOutput() // 1 вариант решения
+
+let promisify = (func) =>
+  new Promise((resolve) => {
+    return func(resolve)
+  })
+
+function fooBarBaz() {
+  Promise.all([promisify(foo), promisify(bar), promisify(baz)]).then((res) =>
+    res.forEach((result) => console.log(result))
+  )
+}
+
+fooBarBaz() // 2 вариант решения
 
 // foo(console.log)
 // bar(console.log)

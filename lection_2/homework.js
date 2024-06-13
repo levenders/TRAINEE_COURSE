@@ -85,7 +85,7 @@ const getUniqArray = (arr) => {
   const result = new Set()
 
   const typeCheck = (item) => {
-    if (typeof item != 'number') {
+    if (typeof item != 'number' || Number.isNaN(item)) {
       throw new Error(
         'В getUniqArray был передан невалидный параметр. Аргумент arr должен быть массивом чисел'
       )
@@ -94,11 +94,12 @@ const getUniqArray = (arr) => {
 
   arr.forEach((item) => {
     typeCheck(item)
+    console.log(item)
     result.add(item)
   })
   return Array.from(result)
 }
-
+console.log(getUniqArray([NaN]))
 console.log(getUniqArray([1, 2, 3, 3, 3, 5, 3, 3])) // [1, 2, 3, 5]
 console.log(getUniqArray([1, 2, 3, 'a', 3, 5, 3, 3]))
 console.log(getUniqArray([1, 2, 3, true, 3, 5, 3, 3]))
