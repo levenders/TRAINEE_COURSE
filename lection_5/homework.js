@@ -12,12 +12,12 @@ console.log(c.b) // Ответ: undefined. Не находит выше по ц�
 a.z = 2
 console.log(c.z) // Ответ: 2. Наследует у прототипа
 c.z = 3
-console.log(a.z) //!
+console.log(a.z) // Ответ: 2. Свойство изменено у наследуемого, но не у прототипа
 
 // 2.
 
 const promise = new Promise(() => {})
-console.log(promise.prototype === Promise.__proto__) //!
+console.log(promise.prototype === Promise.__proto__) // false. Должно быть наоборот
 
 const obj = {}
 console.log(obj.__proto__ === Object.prototype) // true.
@@ -26,9 +26,9 @@ console.log(new Array([]).__proto__ === Array.prototype) // true
 
 function Fn1() {}
 function Fn2() {}
-console.log(Fn1.constructor === Fn2.constructor) //!
+console.log(Fn1.constructor === Fn2.constructor) // true. конструктор один, от Function
 
-console.log(Fn1.prototype === Fn2.prototype) // ?
+console.log(Fn1.prototype === Fn2.prototype) // false. Это разные прототипы
 
 //3.
 // У вас есть два конструктора, Animal и Bird.
